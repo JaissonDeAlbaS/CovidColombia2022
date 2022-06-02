@@ -15,6 +15,17 @@ data.drop('Código DIVIPOLA departamento', axis = 1, inplace=True)
 data.drop('Código DIVIPOLA municipio', axis = 1, inplace=True)
 data.drop('ID de caso', axis = 1, inplace=True)
 
+# Agrupar por columnas los resultados
+data['Estado'].value_counts()
+
+# Normalizar la columna de Estado
+
+data.loc[data['Estado'] == 'leve'] = 'Leve'
+data.loc[data['Estado'] == 'LEVE'] = 'Leve'
+
+#Normalizar la columna de nombre departamento
+data.loc[data['Nombre departamento'] == 'Santander', 'Nombre departamento'] = 'SANTANDER'
+
 #Lista de municipios afectados (sin repetirlos)
 municipios = data['Nombre municipio'].unique()
 print('municipios afectados: \n' + str(municipios))
